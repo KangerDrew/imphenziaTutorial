@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     // This will retrive the transform (rotation, position, scale) of a
     // specified model in the game:
     [SerializeField] private Transform groundCheckTransform = null;
-    // ???:
+    // Returns a list/array of layers of colliders, specified in the unity
+    // (should be right below Ground Check Transform):
     [SerializeField] private LayerMask playerMask;
 
     // Unexposed fields:
@@ -40,6 +41,23 @@ public class Player : MonoBehaviour
     // FixedUpdate is called once every physics update:
     private void FixedUpdate()
     {
+        // Debugging here:
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    foreach (var item in Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask))
+        //    {
+        //        Debug.Log(item.ToString());
+        //    }
+
+        //    if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
+        //    {
+        //        Debug.Log("Nothing in the overlaph!");
+        //    }
+        //}
+
+        // Takes the horizontalInput float value, and apply it to the model's Vector3.x:
+        rigidbodyComponent.velocity = new Vector3(horizontalInput * 2, rigidbodyComponent.velocity.y, 0);
+
         // Generate a sphere at transform's position (of size 0.1), and see how many colliders it
         // overlaps. When player model is in the air, there should be only 1 (groundCheckTransform
         // is "colliding" with the player transform). When player is on the ground .Length value should
@@ -63,9 +81,6 @@ public class Player : MonoBehaviour
             rigidbodyComponent.AddForce(Vector3.up * 5, ForceMode.Impulse);
             jumpKeyWasPressed = false;
         }
-
-        // Takes the horizontalInput float value, and apply it to the model's Vector3.x:
-        rigidbodyComponent.velocity = new Vector3(horizontalInput, rigidbodyComponent.velocity.y, 0);
     }
 
 
