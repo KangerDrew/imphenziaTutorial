@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    private bool jumpKeyWasPressed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +19,17 @@ public class Player : MonoBehaviour
         // Check if space key is pressed down:
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Space Key Was Pressed");
+            jumpKeyWasPressed = true;
+        }
+    }
+
+    // FixedUpdate is called once every physics update:
+    private void FixedUpdate()
+    {
+        if (jumpKeyWasPressed)
+        {
+            GetComponent<Rigidbody>().AddForce(Vector3.up * 5, ForceMode.Impulse);
+            jumpKeyWasPressed = false;
         }
     }
 }
