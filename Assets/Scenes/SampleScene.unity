@@ -288,7 +288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 714266585}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundCheckTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 782421834}
   - component: {fileID: 782421833}
   - component: {fileID: 782421838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,6 +440,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckTransform: {fileID: 714266585}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!1 &932103415
 GameObject:
   m_ObjectHideFlags: 0
